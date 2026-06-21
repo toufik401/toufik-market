@@ -1,9 +1,9 @@
 import streamlit as st
 import requests
 
-# إعدادات تليغرام الخاصة بك
-TELEGRAM_TOKEN = "8966476087:AAFFcvYyi6eOh37KDr8vDZ_BiJJU4dI7uDA"
-TELEGRAM_CHAT_ID = "8966476087"
+# إعدادات تليغرام الخاصة بك بعد التعديل
+TELEGRAM_TOKEN = "8857487956:AAG1Ylg0TnedERGYM7TcsPnu24wtAPHUCy8"
+TELEGRAM_CHAT_ID = "8857487956"
 
 def send_telegram_notification(message):
     url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
@@ -47,9 +47,12 @@ if book4: سعر_الكتب += 400
 shipping_cost = 0
 shipping_method = ""
 
-# شروط التوصيل الذكية بناءً على مكان المشتري
+# شروط التوصيل الذكية (تتعرف على أفلو بكل الأشكال الممكنة)
 if wilaya:
-    if "أفلو" in wilaya:
+    w_clean = wilaya.strip().lower()
+    w_clean = w_clean.replace("أ", "ا").replace("إ", "ا").replace("آ", "ا")
+    
+    if "افلو" in w_clean:
         st.write("### 🚚 خيارات الاستلام في أفلو:")
         aflo_option = st.radio(
             "اختر كيف تريد استلام كتبك:",
@@ -89,11 +92,10 @@ submit_button = st.button("🚀 إرسال الطلب الآن")
 # معالجة الضغط على الزر
 if submit_button:
     if not name or not phone or not wilaya:
-        st.error("❌ من فضلك املأ جميع الخانات (الاسم، الهاتف، الولاية) لإتمام الطلب.")
+        st.error("❌ من فضلك املأ جميع الخانات لإتمام الطلب.")
     elif not book1 and not book2 and not book3 and not book4:
         st.error("❌ من فضلك اختر كتاباً واحداً على الأقل.")
     else:
-        # تحديد أسماء الكتب المطلوبة
         selected_books = []
         if book1: selected_books.append("كتاب الدوال")
         if book2: selected_books.append("كتاب المتتاليات")
@@ -101,7 +103,6 @@ if submit_button:
         if book4: selected_books.append("كتاب الاحتمالات")
         books_text = ", ".join(selected_books)
         
-        # تجهيز رسالة التليغرام لتصلك للهاتف
         tg_message = (
             "🔔 *طلب جديد في المتجر!* 🔔\n\n"
             f"👤 *الاسم الكامل:* {name}\n"
@@ -117,7 +118,6 @@ if submit_button:
         st.success(f"✅ تم إرسال طلبيتك بنجاح يا {name}!")
         st.balloons()
         
-        # الفاتورة النهائية للمشتري
         st.markdown(f"""
         <div style='background-color: #F3F4F6; padding: 20px; border-radius: 10px; border: 2px dashed #1E3A8A; margin-top: 20px; text-align: right;' dir='rtl'>
             <h3 style='text-align: center; color: #1E3A8A; margin-top: 0;'>🧾 الفاتورة الرسمية للطلب</h3>
