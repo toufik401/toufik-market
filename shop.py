@@ -20,27 +20,29 @@ phone = st.text_input("ادخل رقم هاتفك:")
 wilaya = st.text_input("ادخل ولايتك (مثال: أفلو أو الأغواط):")
 shipping_cost = 0
 shipping_method = ""
+wilaya = st.text_input("📍 أدخل ولايتك (مثال: أفلو):")
+
+shipping_cost = 0
+shipping_method = ""
+
 if wilaya == "أفلو":
-    delivery = st.radio("هل تريد ميزة التوصيل إلى باب المنزل في أفلو بـ 10 آلاف (100 دج)؟", ("لا، سأستلمه شخصياً مجاناً", "نعم، أريد التوصيل للمنزل"))
-     if "نعم" in delivery:
-        address = st.text_input("أدخل موقع منزلك في أفلو بالتفصيل:")
-        shipping_cost = 100
-        shipping_method = "توصيل منزلي في أفلو (100 دج)"
+    delivery = st.radio("توصيل منزلي في أفلو بـ 1000 دج؟", ["نعم", "لا (استلام شخصي)"])
+    if delivery == "نعم":
+        address = st.text_input("أدخل عنوانك في أفلو بالتفصيل:")
+        shipping_cost = 1000
+        shipping_method = "توصيل منزلي في أفلو (1000 دج)"
     else:
         shipping_cost = 0
         shipping_method = "استلام شخصي في أفلو (مجاني)"
-elif wilaya: 
-    st.info("التوصيل المتوفر لولايتك هو عبر شركة يالدين (Yalidine).")
-    yalidine_type = st.radio("هل تريد التوصيل إلى (مكتب يالدين) أم (باب المنزل)؟", ("مكتب يالدين", "باب المنزل"))
-    
-    if yalidine_type == "باب المنزل":
-        shipping_cost = 700
-        shipping_method = "يالدين - إلى باب المنزل (700 دج)"
+elif wilaya:
+    st.info("التوصيل المتوفر لولايتك هو عبر شركة يالدين:")
+    yelidine_type = st.radio("اختر التوصيل (مكتب يالدين أم باب المنزل):", ["مكتب يالدين (4000 دج)", "باب المنزل (7000 دج)"])
+    if "مكتب" in yelidine_type:
+        shipping_cost = 4000
+        shipping_method = "مكتب يالدين (4000 دج)"
     else:
-        shipping_cost = 400
-        shipping_method = "يالدين - استلام من المكتب (400 دج)"
-
-
+        shipping_cost = 7000
+        shipping_method = "باب المنزل (7000 دج)"
 st.subheader("📖 اختر الكتب بالنقر على المربعات حذاها:")
 selected_books = []
 
