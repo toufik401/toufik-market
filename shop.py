@@ -12,7 +12,7 @@ def send_telegram_notification(message):
         requests.post(url, json=payload)
     except Exception as e:
         st.error(f"خطأ في إرسال التليغرام: {e}")
-st.title("--- متجر لاقتناء كتاب توفيق للرياضيات ---")
+st.title("---متجر لاقتناء كتاب توفيق للرياضيات---")
 st.write("مرحباً بك في المتجر الإلكتروني، يرجى ملء معلوماتك لطلب الكتب.")
 book_price = 400
 name = st.text_input("ادخل اسمك كامل:")
