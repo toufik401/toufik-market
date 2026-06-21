@@ -81,7 +81,7 @@ if submit_button:
            f"🏠 <b>العنوان:</b> {location}\n"
            f"━━━━━━━━━━━━━━\n"
            f"<i>تم استلام الطلب بنجاح. جهّز الكتاب وتوكل على الله!</i>")
-        st.markdown(f"""
+        st.markdown(f"
         <div style='background-color: #F3F4F6; padding: 20px; border-radius: 10px; border: 2px dashed #1E3A8A; margin-top: 20px; text-align: right;' dir='rtl'>
             <h3 style='text-align: center; color: #1E3A8A; margin-top: 0;'>🧾 الفاتورة الرسمية للطلب</h3>
             <p><b>👤 الاسم الكامل:</b> {name}</p>
