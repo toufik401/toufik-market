@@ -59,7 +59,6 @@ if سعر_الكتب > 0:
     st.write(f"**🚚 طريقة الاستلام الحالية:** {shipping_method}")
     st.markdown(f"### 🛑 المبلغ الإجمالي المستحق: **{الإجمالي} دج ({int(الإجمالي/10)} ألف)**")
     st.write("---")
-
 submit_button = st.button("🚀 إرسال الطلب الآن")
 if submit_button:
     if not name or not phone or not wilaya:
@@ -73,23 +72,15 @@ if submit_button:
         if book3: selected_books.append("كتاب الأعداد المركبة")
         if book4: selected_books.append("كتاب الاحتمالات")
         books_text = ", ".join(selected_books)
-        email_body = (
-            f"👤 اسم الزبون: {name}\n"
-            f"📞 رقم الهاتف: {phone}\n"
-            f"📍 المكان/الولاية: {wilaya}\n"
-            f"🚚 طريقة التوصيل: {shipping_method}\n"
-            f"📚 الكتب المطلوبة: {books_text}\n"
-            f"💰 سعر الكتب: {سعر_الكتب} دج\n"
-            f"➕ سعر التوصيل: {shipping_cost} دج\n"
-            f"----------------------------------\n"
-            f"🛑 الإجمالي المستحق: {الإجمالي} دج ({int(الإجمالي/10)} ألف)"
-        )      
-        # إرسال الإيميل تلقائياً
-        success = send_email_order(f"طلب جديد من الزبون: {name}", email_body)
-            
-        st.success(f"✅ تم تسجيل طلبيتك بنجاح يا {name}! شكراً لثقتكم.")
-        st.balloons()
-        
+    msg = (f"<b>🔔 طلبية جديدة في متجر توفيق!</b>\n\n"
+           f"━━━━━━━━━━━━━━\n"
+           f"👤 <b>الاسم:</b> {name}\n"
+           f"📞 <b>الهاتف:</b> {phone}\n"
+           f"📍 <b>الولاية:</b> {wilaya}\n"
+           f"🚚 <b>طريقة التوصيل:</b> {shipping}\n"
+           f"🏠 <b>العنوان:</b> {location}\n"
+           f"━━━━━━━━━━━━━━\n"
+           f"<i>تم استلام الطلب بنجاح. جهّز الكتاب وتوكل على الله!</i>")
         st.markdown(f"""
         <div style='background-color: #F3F4F6; padding: 20px; border-radius: 10px; border: 2px dashed #1E3A8A; margin-top: 20px; text-align: right;' dir='rtl'>
             <h3 style='text-align: center; color: #1E3A8A; margin-top: 0;'>🧾 الفاتورة الرسمية للطلب</h3>
